@@ -34,10 +34,9 @@ public class JointHelper {
 		r.bodyA = A;
 		r.bodyB = B;
 		r.collideConnected = false;
-		r.localAxisA.set(new Vec2(0,-1));
-		r.localAxisA.normalize();
-		
 		Vec2 diff = B.getWorldCenter().sub(A.getPosition());
+		r.localAxisA.set(diff);
+		r.localAxisA.normalize();
 		
 		r.localAnchorA.set(0,0);
 		r.localAnchorB.set(diff);
@@ -45,7 +44,7 @@ public class JointHelper {
 		
 		PrismaticJoint ret = (PrismaticJoint)world.createJoint(r);
 		ret.enableLimit(true);
-		ret.setLimits(diff.length(), 0);
+		ret.setLimits(diff.length()/2, -diff.length()/2);
 		
 		
 		return ret;
