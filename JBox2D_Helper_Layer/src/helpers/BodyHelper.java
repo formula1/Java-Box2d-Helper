@@ -20,6 +20,7 @@ public abstract class BodyHelper implements BodyDefCallback, FixtureDefCallback{
 	public static World world;
 	public static float standard_friction;
 	public static float standard_density;
+	public static float standard_restitution = 0;
 	
 	public BodyHelper(World world, float standard_friction, float standard_density){
 		BodyHelper.world = world;
@@ -133,6 +134,7 @@ public abstract class BodyHelper implements BodyDefCallback, FixtureDefCallback{
 		boxing.shape = shape;
 		boxing.friction = standard_friction;
 		boxing.density = standard_density;
+		boxing.restitution = standard_restitution;
 		return instruction.fixDefCallback(boxing);
 	}
 
